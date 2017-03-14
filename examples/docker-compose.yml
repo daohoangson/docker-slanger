@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  slanger:
+    image: xfrocks/slanger
+    command: ['--app_key', 'key', '--secret', 'secret', '--redis_address', 'redis://redis:6379/slanger']
+    ports:
+      - "8080:8080"
+      - "4567:4567"
+    links:
+      - redis
+
+  redis:
+    image: redis
+    volumes:
+      - ./redis-data:/data
+
